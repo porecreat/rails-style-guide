@@ -9,8 +9,8 @@ C'est un guide complémentaire au
 [guide de style de développement Ruby](https://github.com/porecreat/ruby-style-guide/blob/master/README-frFR.md)
 piloté par la communauté, déjà publié.
 
-Alors que dans le guide, la section [Tester les applications Rails](#tester)
-se trouve après [Développer des applications Rails](#développer), je suis persuadé que le
+Alors que dans le guide, la section [Tester les applications Rails](#tester-les-applications-rails)
+se trouve après [Développer des applications Rails](#développer-des-applications-rails), je suis persuadé que le
 [Behaviour-Driven Development](http://fr.wikipedia.org/wiki/Behavior_Driven_Development)
 (Développement piloté par le comportement) est la meilleure méthode de développement logiciel.
 Gardez cela en tête.
@@ -27,30 +27,29 @@ Certains conseils présentés ici ne sont applicables qu'à Rails 3.1 ou plus.
 Vous pouvez générer une copie PDF ou HTML de ce guide en utilisant
 [Transmuter](https://github.com/TechnoGate/transmuter).
 
-
 Des traductions de ce guide sont disponibles dans les langues suivantes :
 
 * [Anglais](https://github.com/bbatsov/rails-style-guide/blob/master/README.md) (version originale)
 * [Chinois simplifié](https://github.com/JuanitoFatas/rails-style-guide/blob/master/README-zhCN.md)
 * [Chinois traditionnel](https://github.com/JuanitoFatas/rails-style-guide/blob/master/README-zhTW.md)
 
-# Table of Contents
+# Table des matières
 
-* [Developing Rails applications](#developing-rails-applications)
+* [Développer des applications Rails](#développer-des-applications-rails)
     * [Configuration](#configuration)
-    * [Routing](#routing)
-    * [Controllers](#controllers)
-    * [Models](#models)
+    * [Routage](#routage)
+    * [Contrôleurs](#contrôleurs)
+    * [Modèles](#modèles)
     * [Migrations](#migrations)
-    * [Views](#views)
-    * [Internationalization](#internationalization)
-    * [Assets](#assets)
-    * [Mailers](#mailers)
+    * [Vues](#vues)
+    * [Internationalisation](#internationalisation)
+    * [Ressources statiques](#ressources-statiques) (Assets)
+    * [Expéditeurs](#expéditeurs) (Mailers)
     * [Bundler](#bundler)
-    * [Priceless Gems](#priceless-gems)
-    * [Flawed Gems](#flawed-gems)
-    * [Managing processes](#managing-processes)
-* [Testing Rails applications](#testing-rails-applications)
+    * [Gems inestimables](#gems-inestimables)
+    * [Gems imparfaites](#gems-imparfaites)
+    * [Gestion des processus](#gestion-des-processus)
+* [Tester les applications Rails](#tester-les-applications-rails)
     * [Cucumber](#cucumber)
     * [RSpec](#rspec)
 
