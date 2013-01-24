@@ -53,28 +53,27 @@ Des traductions de ce guide sont disponibles dans les langues suivantes :
     * [Cucumber](#cucumber)
     * [RSpec](#rspec)
 
-# Developing Rails applications
+# Développer des applications Rails
 
 ## Configuration
 
-* Put custom initialization code in `config/initializers`. The code in
-  initializers executes on application startup.
-* The initialization code for each gem should be in a separate file
-  with the same name as the gem, for example `carrierwave.rb`,
+* Ajoutez le code d'initialisation personnalisé dans `config/initializers`.
+  Le code placé dans ce répertoire est exécuté au démarrage de l'application.
+* Le code d'initialisation de chaque gem doit se trouver dans un fichier
+  spécifique, portant le même nom que la gem. Par exemple: `carrierwave.rb`,
   `active_admin.rb`, etc.
-* Adjust accordingly the settings for development, test and production
-  environment (in the corresponding files under `config/environments/`)
-  * Mark additional assets for precompilation (if any):
+* Adaptez les paramètres relatifs aux environnements *development*, *test* et
+  *production* (dans leur fichier repectif dans `config/environments/`)
+  * Spécifiez les ressources statiques additionnelles devant être précompilées (si nécessaire):
 
         ```Ruby
         # config/environments/production.rb
-        # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+        # Précompilation des ressources statiques additionnelles (application.js, application.css, et tous les non-JS/CSS sont déjà ajoutés)
         config.assets.precompile += %w( rails_admin/rails_admin.css rails_admin/rails_admin.js )
         ```
 
-* Keep configuration that's applicable to all environments in the `config/application.rb` file.
-* Create an additional `staging` environment that closely resembles
-the `production` one.
+* Placez la configuration commune à tous les environnements dans le fichier `config/application.rb`.
+* Créez un environnement supplémentaire `staging` proche de l'environnement `production`.
 
 ## Routing
 
