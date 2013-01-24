@@ -1,36 +1,38 @@
-# Prelude
+# Préambule
 
-> Style is what separates the good from the great. <br/>
+> Le style est ce qui sépare le bon de l'excellent. <br/>
 > -- Bozhidar Batsov
 
-The goal of this guide is to present a set of best practices and style
-prescriptions for Ruby on Rails 3 development. It's a complementary
-guide to the already existing community-driven
-[Ruby coding style guide](https://github.com/bbatsov/ruby-style-guide).
+Le but de ce guide est de fournir un ensemble de bonnes pratiques et
+de recommandations de style pour le développement Ruby on Rails 3.
+C'est un guide complémentaire au
+[guide de style de développement Ruby](https://github.com/porecreat/ruby-style-guide/blob/master/README-frFR.md)
+piloté par la communauté, déjà publié.
 
-While in the guide the section [Testing Rails applications](#testing)
-is after [Developing Rails applications](#developing) I truly believe
-that
-[Behaviour-Driven Development](http://en.wikipedia.org/wiki/Behavior_Driven_Development)
-(BDD) is the best way to develop software. Keep that in mind.
+Alors que dans le guide, la section [Tester les applications Rails](#tester)
+se trouve après [Développer des applications Rails](#développer), je suis persuadé que le
+[Behaviour-Driven Development](http://fr.wikipedia.org/wiki/Behavior_Driven_Development)
+(Développement piloté par le comportement) est la meilleure méthode de développement logiciel.
+Gardez cela en tête.
 
-Rails is an opinionated framework and this is an opinionated guide. In
-my mind I'm totally certain that
-[RSpec](https://www.relishapp.com/rspec) is superior to Test::Unit,
-[Sass](http://sass-lang.com/) is superior to CSS and
-[Haml](http://haml-lang.com/) ([Slim](http://slim-lang.com/)) is
-superior to Erb. So don't expect to find any Test::Unit, CSS or Erb
-advice in here.
+Rails est un framework dogmatique et ce guide est également dogmatique.
+J'ai l'intime conviction que
+[RSpec](https://www.relishapp.com/rspec) est meilleur que Test::Unit,
+[Sass](http://sass-lang.com/) est meilleur que CSS and
+[Haml](http://haml-lang.com/) ([Slim](http://slim-lang.com/)) est meilleur que Erb.
+Donc n'espérez pas trouver de conseils sur Test::Unit, CSS ou Erb dans ce guide.
 
-Some of the advice here is applicable only to Rails 3.1+.
+Certains conseils présentés ici ne sont applicables qu'à Rails 3.1 ou plus.
 
-You can generate a PDF or an HTML copy of this guide using
+Vous pouvez générer une copie PDF ou HTML de ce guide en utilisant
 [Transmuter](https://github.com/TechnoGate/transmuter).
 
-Translations of the guide are available in the following languages:
 
-* [Chinese Simplified](https://github.com/JuanitoFatas/rails-style-guide/blob/master/README-zhCN.md)
-* [Chinese Traditional](https://github.com/JuanitoFatas/rails-style-guide/blob/master/README-zhTW.md)
+Des traductions de ce guide sont disponibles dans les langues suivantes :
+
+* [Anglais](https://github.com/bbatsov/rails-style-guide/blob/master/README.md) (version originale)
+* [Chinois simplifié](https://github.com/JuanitoFatas/rails-style-guide/blob/master/README-zhCN.md)
+* [Chinois traditionnel](https://github.com/JuanitoFatas/rails-style-guide/blob/master/README-zhTW.md)
 
 # Table of Contents
 
