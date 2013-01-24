@@ -75,52 +75,53 @@ Des traductions de ce guide sont disponibles dans les langues suivantes :
 * Placez la configuration commune à tous les environnements dans le fichier `config/application.rb`.
 * Créez un environnement supplémentaire `staging` proche de l'environnement `production`.
 
-## Routing
+## Routage
 
-* When you need to add more actions to a RESTful resource (do you
-  really need them at all?) use `member` and `collection` routes.
+* Lorsque vous ajoutez des actions complémentaires dans une
+  ressource RESTful (sont-elles vraiment toutes nécessaires ?),
+  utilisez des routes `member` et `collection`.
 
     ```Ruby
-    # bad
+    # mauvais
     get 'subscriptions/:id/unsubscribe'
     resources :subscriptions
 
-    # good
+    # bien
     resources :subscriptions do
       get 'unsubscribe', on: :member
     end
 
-    # bad
+    # mauvais
     get 'photos/search'
     resources :photos
 
-    # good
+    # bien
     resources :photos do
       get 'search', on: :collection
     end
     ```
 
-* If you need to define multiple `member/collection` routes use the
-  alternative block syntax.
+* Si vous devez définir plusieurs routes `member/collection`, utilisez
+  la syntaxe alternative en bloc.
 
     ```Ruby
     resources :subscriptions do
       member do
         get 'unsubscribe'
-        # more routes
+        # autres routes
       end
     end
 
     resources :photos do
       collection do
         get 'search'
-        # more routes
+        # autres routes
       end
     end
     ```
 
-* Use nested routes to express better the relationship between
-  ActiveRecord models.
+* Utilisez les routes imbriquées pour mieux refléter les relations
+  entre les modèles ActiveRecord.
 
     ```Ruby
     class Post < ActiveRecord::Base
@@ -137,21 +138,22 @@ Des traductions de ce guide sont disponibles dans les langues suivantes :
     end
     ```
 
-* Use namespaced routes to group related actions.
+* Utilisez des routes *namespaces* pour grouper les actions connexes.
 
     ```Ruby
     namespace :admin do
-      # Directs /admin/products/* to Admin::ProductsController
+      # Dirige /admin/products/* vers Admin::ProductsController
       # (app/controllers/admin/products_controller.rb)
       resources :products
     end
     ```
 
-* Never use the legacy wild controller route. This route will make all
-  actions in every controller accessible via GET requests.
+* N'utilisez jamais les anciennes routes à contrôleur libre. Ces routes
+  rendent toutes les actions de tous les contrôleurs accessibles via des
+  requêtes GET.
 
     ```Ruby
-    # very bad
+    # très mauvais
     match ':controller(/:action(/:id(.:format)))'
     ```
 
