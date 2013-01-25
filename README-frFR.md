@@ -167,14 +167,14 @@ Des traductions de ce guide sont disponibles dans les langues suivantes :
 * Ne partagez pas plus de deux variables d'instance entre un contrôleur et
   une vue.
 
-## Models
+## Modèles
 
-* Introduce non-ActiveRecord model classes freely.
-* Name the models with meaningful (but short) names without
-abbreviations.
-* If you need model objects that support ActiveRecord behavior(like
-  validation) use the
-  [ActiveAttr](https://github.com/cgriego/active_attr) gem.
+* N'hésitez pas à utiliser des modèles non-ActiveRecord.
+* Nommez les modèles avec des noms explicites (mais courts)
+  sans abréviation.
+* Si vous avez besoin d'objets modèles qui reproduisent le comportement
+  d'ActiveRecord (comme la validation), utilisez la gem
+  [ActiveAttr](https://github.com/cgriego/active_attr).
 
     ```Ruby
     class Message
@@ -198,16 +198,17 @@ abbreviations.
 
 ### ActiveRecord
 
-* Avoid altering ActiveRecord defaults (table names, primary key, etc)
-  unless you have a very good reason (like a database that's not under
-  your control).
-* Group macro-style methods (`has_many`, `validates`, etc) in the
-  beginning of the class definition.
-* Prefer `has_many :through` to `has_and_belongs_to_many`. Using `has_many
-:through` allows additional attributes and validations on the join model.
+* Evitez de modifier les valeurs par défaut d'ActiveRecord (noms de tables,
+  clés primaires, etc) sauf si vous avez de très bonnes raisons (comme une
+  base de données que vous ne contôlez pas).
+* Regroupez les méthodes générales (`has_many`, `validates`, etc) au début
+  de la définition de classe.
+* Privilégiez `has_many :through` plutôt que `has_and_belongs_to_many`.
+  Utiliser `has_many :through` permet d'ajouter des attributs supplémentaires
+  et des validations sur le modèle de jointure.
 
     ```Ruby
-    # using has_and_belongs_to_many
+    # utilisation de has_and_belongs_to_many
     class User < ActiveRecord::Base
       has_and_belongs_to_many :groups
     end
@@ -216,7 +217,7 @@ abbreviations.
       has_and_belongs_to_many :users
     end
 
-    # prefered way - using has_many :through
+    # technique privilégiée - utiliser has_many :through
     class User < ActiveRecord::Base
       has_many :memberships
       has_many :groups, through: :memberships
@@ -233,18 +234,18 @@ abbreviations.
     end
     ```
 
-* Always use the new
-  ["sexy" validations](http://thelucid.com/2010/01/08/sexy-validation-in-edge-rails-rails-3/).
-* When a custom validation is used more than once or the validation is some regular expression mapping,
-create a custom validator file.
+* Utilisez toujours les 
+  [validations "sexy"](http://thelucid.com/2010/01/08/sexy-validation-in-edge-rails-rails-3/).
+* Quand une validation personnalisée est utilisée plus d'une fois ou qu'il s'agit d'une
+  correspondance d'expression rationnelle, créez un fichier de validation personnalisée.
 
     ```Ruby
-    # bad
+    # mauvais
     class Person
       validates :email, format: { with: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
     end
 
-    # good
+    # bien
     class EmailValidator < ActiveModel::EachValidator
       def validate_each(record, attribute, value)
         record.errors[attribute] << (options[:message] || 'is not a valid email') unless value =~ /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
@@ -256,8 +257,8 @@ create a custom validator file.
     end
     ```
 
-* All custom validators should be moved to a shared gem.
-* Use named scopes freely.
+* Toutes les validations personnalisées devraient être placées dans une gem partagée.
+* N'hésitez pas à utiliser les *scopes* nommés.
 
     ```Ruby
     class User < ActiveRecord::Base
@@ -268,7 +269,7 @@ create a custom validator file.
     end
     ```
 
-* Wrap named scopes in `lambdas` to initialize them lazily.
+* Encapsulez les *scopes* dans des `lambdas` pour les initialiser au dernier moment.
 
     ```Ruby
     # bad
@@ -288,11 +289,10 @@ create a custom validator file.
     end
     ```
 
-* When a named scope defined with a lambda and parameters becomes too
-complicated, it is preferable to make a class method instead which serves
-the same purpose of the named scope and returns an
-`ActiveRecord::Relation` object. Arguably you can define even simpler
-scopes like this.
+* Quand un *scope* nommé, défini avec un *lambda* et des paramètres, devient
+  trop compliqué, il est préférable de créer une méthode de classe qui affiche
+  le même objectif que le *scope* nommé et retourne un objet `ActiveRecord::Relation`.
+  De cette façon, vous pouvez potentiellement créer des scopes encore plus simples.
 
     ```Ruby
     class User < ActiveRecord::Base
@@ -302,13 +302,15 @@ scopes like this.
     end
     ```
 
-* Beware of the behavior of the `update_attribute` method. It doesn't
-  run the model validations (unlike `update_attributes`) and could easily corrupt the model state.
-* Use user-friendly URLs. Show some descriptive attribute of the model in the URL rather than its `id`.
-There is more than one way to achieve this:
-  * Override the `to_param` method of the model. This method is used by Rails for constructing a URL to the object.
-    The default implementation returns the `id` of the record as a String. It could be overridden to include another
-    human-readable attribute.
+* Attention au comportement de la méthode `update_attribute`. Elle ne déclenche pas l'exécution
+  des validations de modèle (contrairement à `update_attributes`) et peu facilement corrompre
+  l'intégrité du modèle.
+* Utilisez des adresses URLs conviales. Affichez des attributs descriptifs du modèle dans l'URL
+  plutôt que son `id`.
+  Il y a plusieurs façons de procéder :
+  * Surchargez la méthode `to_param` du modèle. Rails utilise cette méthode pour construire l'URL pointant vers l'objet.
+    L'implémentation par défaut retourne l'`id` de l'enregistrement sous forme de chaine de caractères. Elle peut
+    être surchargée pour inclure un autre attribut humainement lisible.
 
         ```Ruby
         class Person
@@ -317,11 +319,13 @@ There is more than one way to achieve this:
           end
         end
         ```
-        
-    In order to convert this to a URL-friendly value, `parameterize` should be called on the string. The `id` of the
-    object needs to be at the beginning so that it can be found by the `find` method of ActiveRecord.
+    
+    Pour convertir le résultat en un élément d'URL valide, `parameterize` doit être appelé sur la chaine.
+    L'`id` de l'objet doit se trouver au début de la chaine pour pouvoir être utilisé par la méthode
+    `find` d'ActiveRecord.
 
-  * Use the `friendly_id` gem. It allows creation of human-readable URLs by using some descriptive attribute of the model instead of its `id`.
+  * Utilisez la gem `friendly_id`. Elle permet la création d'URLs humainement lisibles en utilisant un attribut
+    descriptif du modèle plutôt que son `id`.
 
         ```Ruby
         class Person
@@ -330,7 +334,7 @@ There is more than one way to achieve this:
         end
         ```
 
-        Check the [gem documentation](https://github.com/norman/friendly_id) for more information about its usage.
+        Consultez la [documentation de la gem](https://github.com/norman/friendly_id) pour de plus amples informations sur son utilisation.
 
 ### ActiveResource
 
