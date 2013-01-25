@@ -157,14 +157,15 @@ Des traductions de ce guide sont disponibles dans les langues suivantes :
     match ':controller(/:action(/:id(.:format)))'
     ```
 
-## Controllers
+## Contrôleurs
 
-* Keep the controllers skinny - they should only retrieve data for the
-  view layer and shouldn't contain any business logic (all the
-  business logic should naturally reside in the model).
-* Each controller action should (ideally) invoke only one method other
-  than an initial find or new.
-* Share no more than two instance variables between a controller and a view.
+* Gardez vos contrôleurs légers - ils doivent uniquement récupérer les
+  données pour les vues et ne devraient pas contenir de traitement métier
+  (tous les traitements métiers devraient se trouver dans le modèle).
+* Chaque action de contrôleur devrait (vraiment) n'appeler qu'une seule
+  méthode en plus du `find` ou `new` initial.
+* Ne partagez pas plus de deux variables d'instance entre un contrôleur et
+  une vue.
 
 ## Models
 
